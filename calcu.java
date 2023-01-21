@@ -1,7 +1,7 @@
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+//  https://www.youtube.com/watch?v=b7rC0BENpQw&t=433s ME BASO EN ESTE VIDEO
 public class calcu {
     private JTextField pantalla;
     private JButton Boton7;
@@ -24,8 +24,12 @@ public class calcu {
     private JButton BotonPorcentaje;
     private JButton RESPUESTA;
     private JPanel Panel1;
+    private JButton button1;
+    private JButton cButton;
 
-
+    public float primerNum;
+    public float segundoNum;
+    public String operador;
 
     public calcu() {
         Boton0.addActionListener(new ActionListener() {
@@ -86,6 +90,38 @@ public class calcu {
             @Override
             public void actionPerformed(ActionEvent e) {
                 pantalla.setText(pantalla.getText()+"9");
+            }
+        });
+
+
+        cButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                pantalla.setText("");
+            }
+        });
+        BotonSumar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                primerNum = Float.parseFloat(pantalla.getText());
+                operador = "+";
+                pantalla.setText("");//recibe el siguiente numero
+            }
+        });
+        RESPUESTA.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                segundoNum = Float.parseFloat(pantalla.getText());
+
+
+                switch (operador){
+                    case "+":{
+                        pantalla.setText( Float.toString(primerNum+ segundoNum) );
+                        primerNum=(primerNum+segundoNum);//este numero que es el resultado del anterior, puede usarse para otra suma
+                    }
+                    break;
+                }
+
             }
         });
     }
