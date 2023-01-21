@@ -120,8 +120,68 @@ public class calcu {
                         primerNum=(primerNum+segundoNum);//este numero que es el resultado del anterior, puede usarse para otra suma
                     }
                     break;
+                    case "-":{
+                        pantalla.setText( Float.toString(primerNum- segundoNum) );
+                        primerNum=(primerNum-segundoNum);//est
+                    }
+                    break;
+                    case "*":{
+                        pantalla.setText( Float.toString(primerNum* segundoNum) );
+                        primerNum=(primerNum*segundoNum);//est
+                    }
+                    break;
+                    case "/":{
+                        pantalla.setText( Float.toString(primerNum/ segundoNum) );
+                        primerNum=(primerNum/segundoNum);//est
+                    }
+                    break;
+                    case "MOD":{
+                        pantalla.setText( Float.toString(primerNum% segundoNum) );
+                        primerNum=(primerNum%segundoNum);//est
+                    }
+                    break;
                 }
 
+            }
+        });
+        BotonRestar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                primerNum = Float.parseFloat(pantalla.getText());
+                operador = "-";
+                pantalla.setText("");//recibe el siguiente numero
+            }
+        });
+        BotonMultiplicar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                primerNum = Float.parseFloat(pantalla.getText());
+                operador = "*";
+                pantalla.setText("");//recibe el siguiente numero
+            }
+        });
+        BotonDividir.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                primerNum = Float.parseFloat(pantalla.getText());
+                operador = "/";
+                pantalla.setText("");//recibe el siguiente numero
+            }
+        });
+        BotonModulo.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                primerNum = Float.parseFloat(pantalla.getText());
+                operador = "MOD";
+                pantalla.setText("");//recibe el siguiente numero
+            }
+        });
+        BotonPotencia.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                primerNum = Float.parseFloat(pantalla.getText());
+                operador = "^";
+                pantalla.setText("");//recibe el siguiente numero
             }
         });
     }
