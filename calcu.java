@@ -98,7 +98,10 @@ public class calcu {
             @Override
             public void actionPerformed(ActionEvent e) {
                 pantalla.setText("");
+                primerNum = 0;
+                segundoNum = 0;
             }
+
         });
         BotonSumar.addActionListener(new ActionListener() {
             @Override
@@ -111,6 +114,9 @@ public class calcu {
         RESPUESTA.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
+                System.out.println("num1: " + primerNum);
+                System.out.println("num2: " + segundoNum);
                 segundoNum = Float.parseFloat(pantalla.getText());
 
 
@@ -131,8 +137,16 @@ public class calcu {
                     }
                     break;
                     case "/":{
-                        pantalla.setText( Float.toString(primerNum/ segundoNum) );
-                        primerNum=(primerNum/segundoNum);//est
+
+                        try{
+                            pantalla.setText( Float.toString(primerNum/ segundoNum) );
+                            primerNum=(primerNum/segundoNum);//est
+                        }catch (ArithmeticException exepcion){
+                            JOptionPane.showMessageDialog(null,"No se puede dividir para 0","Error",JOptionPane.ERROR_MESSAGE);
+                            System.out.println("ERORRRR");
+                        }
+
+
                     }
                     break;
                     case "MOD":{
@@ -140,7 +154,25 @@ public class calcu {
                         primerNum=(primerNum%segundoNum);//est
                     }
                     break;
-                }
+
+                    case "pow":{
+                        pantalla.setText( Float.toString((float)Math.pow(primerNum,segundoNum)) );
+                        primerNum=((float)Math.pow(primerNum,segundoNum));//est
+                    }
+                    break;
+
+                    case "sqrt":{
+
+                        try{
+                            pantalla.setText( Float.toString((float)Math.sqrt(primerNum)) );
+                            primerNum = (float)Math.sqrt(primerNum);
+                        }catch (ArithmeticException exepcion){
+                            JOptionPane.showMessageDialog(null,"No existe la raíz cuadrada de números negativos","Error",JOptionPane.ERROR_MESSAGE);
+                        }
+
+                    }
+                    break;
+                }//FIN DEL SWITCH
 
             }
         });
@@ -180,8 +212,24 @@ public class calcu {
             @Override
             public void actionPerformed(ActionEvent e) {
                 primerNum = Float.parseFloat(pantalla.getText());
-                operador = "^";
+                operador = "pow";
                 pantalla.setText("");//recibe el siguiente numero
+            }
+        });
+        BotonRaiz.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                primerNum = Float.parseFloat(pantalla.getText());
+                operador="sqrt";
+                pantalla.setText(Float.toString(primerNum));
+            }
+        });
+        button1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if( !pantalla.getText().contains(".") ){
+                    pantalla.setText(pantalla.getText()+".");
+                }
             }
         });
     }
