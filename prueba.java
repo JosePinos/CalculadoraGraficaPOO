@@ -13,8 +13,10 @@ public class prueba {
             if(val2 == 0){
                 throw new ArithmeticException("No se divide para 0");
             }
-            resp = val1/val2;
-            System.out.println(val1 + "/" + val2 + "="+(resp) );
+            else{
+                resp = val1/val2;
+                System.out.println(val1 + "/" + val2 + "="+(resp) );
+            }
         }catch (Exception e){
             System.out.println("Error: " + e);
             JOptionPane.showMessageDialog(null, "no se divide para 0", "ERROR", JOptionPane.ERROR_MESSAGE);
