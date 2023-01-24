@@ -21,7 +21,6 @@ public class calcu {
     private JButton BotonRestar;
     private JButton BotonDividir;
     private JButton BotonRaiz;
-    private JButton BotonPorcentaje;
     private JButton RESPUESTA;
     private JPanel Panel1;
     private JButton button1;
@@ -139,8 +138,15 @@ public class calcu {
                     case "/":{
 
                         try{
-                            pantalla.setText( Float.toString(primerNum/ segundoNum) );
-                            primerNum=(primerNum/segundoNum);//est
+
+                            if(segundoNum == 0){
+                                throw new ArithmeticException("No se puede dividir para cero");
+                            }else{
+                                pantalla.setText( Float.toString(primerNum/ segundoNum) );
+                                primerNum=(primerNum/segundoNum);//est
+                            }
+
+
                         }catch (ArithmeticException exepcion){
                             JOptionPane.showMessageDialog(null,"No se puede dividir para 0","Error",JOptionPane.ERROR_MESSAGE);
                             System.out.println("ERORRRR");
@@ -164,8 +170,13 @@ public class calcu {
                     case "sqrt":{
 
                         try{
-                            pantalla.setText( Float.toString((float)Math.sqrt(primerNum)) );
-                            primerNum = (float)Math.sqrt(primerNum);
+                            if(primerNum < 0){
+                                throw new ArithmeticException("No existe raíz cuadrada de números negativos");
+                            }else{
+                                pantalla.setText( Float.toString((float)Math.sqrt(primerNum)) );
+                                primerNum = (float)Math.sqrt(primerNum);
+                            }
+
                         }catch (ArithmeticException exepcion){
                             JOptionPane.showMessageDialog(null,"No existe la raíz cuadrada de números negativos","Error",JOptionPane.ERROR_MESSAGE);
                         }
